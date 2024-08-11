@@ -171,29 +171,29 @@ Despite the similarity in names, urllib3 is a 3rd-party package and is completel
 
 Copy and paste this code snippet into the use_urllib3.py file:
 
-Python
-Copy code
-import json
-import os
-import webbrowser
-
-import urllib3
-
-
-nasa_api_key = os.environ.get('NASA_API_KEY')
-api_url = 'https://api.nasa.gov/planetary/apod?api_key={}'.format(nasa_api_key)
-
-def use_urllib3(api_url):
-
-    http = urllib3.PoolManager()
-    response = http.request('GET', api_url)
-    json_response = json.loads(response.data)
-    photo_url = json_response['url']
-    webbrowser.open_new_tab(photo_url)
-
-    return
-
-use_urllib3(api_url)
+ Python
+ Copy code
+ import json
+ import os
+ import webbrowser
+ 
+ import urllib3
+ 
+ 
+ nasa_api_key = os.environ.get('NASA_API_KEY')
+ api_url = 'https://api.nasa.gov/planetary/apod?api_key={}'.format(nasa_api_key)
+ 
+ def use_urllib3(api_url):
+ 
+     http = urllib3.PoolManager()
+     response = http.request('GET', api_url)
+     json_response = json.loads(response.data)
+     photo_url = json_response['url']
+     webbrowser.open_new_tab(photo_url)
+ 
+     return
+ 
+ use_urllib3(api_url)
 In the example code above, we first import all the modules and packages we need. Then, we retrieve the API key we stored in the .env file (Line 8) and insert it into the URL we’re going to send the GET request to (Line 9). On Lines 13 and 14 we make use of the urllib3 package, then process the response to extract the photo’s URL and display it in the web browser.
 
 Because a function call is included at the bottom of the file, you can run this file and make sure it works.
@@ -209,30 +209,31 @@ The httplib2 package is a requirement of 86,000 GitHub repositories. Usage of ht
 Here’s a simple example of how you can use httplib2 in your project. Copy and paste the following code into use_httplib2.py:
 
 Python
-Copy code
-import json
-import os
-import webbrowser
+Copy code:
 
-import httplib2
-
-
-nasa_api_key = os.environ.get('NASA_API_KEY')
-api_url = 'https://api.nasa.gov/planetary/apod?api_key={}'.format(nasa_api_key)
-
-def use_httplib2(api_url):
-
-    http = httplib2.Http()
-
-    # The response is sent as a 2-item tuple, with the content at index 1
-    response = http.request(api_url)
-    json_response = json.loads(response[1])
-    photo_url = json_response['url']
-    webbrowser.open_new_tab(photo_url)
-
-    return
-
-use_httplib2(api_url)
+            import json
+            import os
+            import webbrowser
+            
+            import httplib2
+            
+            
+            nasa_api_key = os.environ.get('NASA_API_KEY')
+            api_url = 'https://api.nasa.gov/planetary/apod?api_key={}'.format(nasa_api_key)
+            
+            def use_httplib2(api_url):
+            
+                http = httplib2.Http()
+            
+                # The response is sent as a 2-item tuple, with the content at index 1
+                response = http.request(api_url)
+                json_response = json.loads(response[1])
+                photo_url = json_response['url']
+                webbrowser.open_new_tab(photo_url)
+            
+                return
+            
+            use_httplib2(api_url)
 In the example code above, we first import all the modules and packages we need. Then, we retrieve the API key we stored in the .env file (Line 8) and insert it into the URL we’re going to send the GET request to (Line 9). On Lines 13 and 16 we make use of the httplib2 package, then process the response to extract the photo’s URL and display it in the web browser.
 
 Because a function call is included at the bottom of the file, you can run this file and make sure it works:
